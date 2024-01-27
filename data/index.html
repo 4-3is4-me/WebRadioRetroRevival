@@ -1,25 +1,94 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ESP WEB SERVER</title>
+    <title>Radio Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="app.js"></script>
   </head>
   <body>
     <div class="topnav">
-      <h1>ESP WEB SERVER</h1>
+      <h1>Radio Manager</h1>
+      <button class="button2" onclick="openTab(event, 'stations')">Stations</button>
+      <button class="button2" onclick="openTab(event, 'search')">Search</button>
     </div>
-    <div class="content">
-      <div class="card-grid">
-        <div class="card">
-          <p class="card-title"><i class="fas fa-lightbulb"></i> GPIO 2</p>
-          <p>
-            <a href="on"><button class="button-on">ON</button></a>
-            <a href="off"><button class="button-off">OFF</button></a>
-          </p>
-          <p class="state">State: %STATE%</p>
+    <div id="stations" class="tab">
+      <div class="content">
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">
+              <h1>Stations</h1>
+            </div>
+            <form action="/" method="POST"
+          onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
+          onSubmit="return confirm('Please confirm, are you ready to submit?');">
+              <p>
+                <label for="station1name">Station 1&nbsp;</label>
+                <input type="text" id="station1name" name="station1name" value=%STAT1NAME%><br>
+                <label for="station1url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station1url" name="station1url" value=%STAT1URL%><br>
+                <label for="station1name">Station 2&nbsp;</label>
+                <input type="text" id="station2name" name="station2name" value=%STAT2NAME%><br>
+                <label for="station2url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station2url" name="station2url" value=%STAT2URL%><br>
+                <label for="station2name">Station 3&nbsp;</label>
+                <input type="text" id="station3name" name="station3name" value=%STAT3NAME%><br>
+                <label for="station3url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station3url" name="station3url" value=%STAT3URL%><br>
+                <label for="station3name">Station 4&nbsp;</label>
+                <input type="text" id="station4name" name="station4name" value=%STAT4NAME%><br>
+                <label for="station4url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station4url" name="station4url" value=%STAT4URL%><br>
+                <label for="station5name">Station 5&nbsp;</label>
+                <input type="text" id="station5name" name="station5name" value=%STAT5NAME%><br>
+                <label for="station5url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station5url" name="station5url" value=%STAT5URL%><br>
+                <label for="station6name">Station 6&nbsp;</label>
+                <input type="text" id="station6name" name="station6name" value=%STAT6NAME%><br>
+                <label for="station6url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station6url" name="station6url" value=%STAT6URL%><br>
+                <label for="station7name">Station 7&nbsp;</label>
+                <input type="text" id="station7name" name="station7name" value=%STAT7NAME%><br>
+                <label for="station7url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station7url" name="station7url" value=%STAT7URL%><br>
+                <label for="station8name">Station 8&nbsp;</label>
+                <input type="text" id="station8name" name="station8name" value=%STAT8NAME%><br>
+                <label for="station8url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station8url" name="station8url" value=%STAT8URL%><br>
+                <label for="station9name">Station 9&nbsp;</label>
+                <input type="text" id="station9name" name="station9name" value=%STAT9NAME%><br>
+                <label for="station9url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station9url" name="station9url" value=%STAT9URL%><br>
+                <label for="station10name">Station 10</label>
+                <input type="text" id="station10name" name="station10name" value=%STAT10NAME%><br>
+                <label for="station10url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
+                <input type="url" id="station10url" name="station10url" value=%STAT10URL%><br>
+                <label for="deleteWifiCredentials">Delete Wifi Credentials</label>
+                <input type="checkbox" id="deleteWifiCredentials" name="deleteWifiCredentials"><br>
+                <br>
+                <input type ="submit" value ="Submit">
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div  id="search" class ="tab">
+      <div class="content">
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">
+              <h1>Search</h1>
+            </div>
+            <input type = "text" id = "name" name = "name" value=" Station Name"><br>
+            <input type = "text" id = "countrycode" name = "countrycode" value = " Country Code"><br>
+            <p id="result"></p>
+            <p>
+              <button onclick="getData()" id = "button" class="button-on">SEARCH</button></a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

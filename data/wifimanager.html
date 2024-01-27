@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Radio WiFi Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="topnav">
+    <h1>WiFi Manager</h1>
+  </div>
+  <div class="content">
+    <div class="card-grid">
+      <div class="card">
+        <form action="/" method="POST"
+			onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
+			onSubmit="return confirm('Please confirm, are you ready to submit?');">
+          <p>
+            <label for="ssid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SSID</label>
+            <input type="text" id="ssid" name="ssid" value=%SSID%><br>
+            <label for="pass">Password</label>
+            <input type="password" id="pass" name="pass" value=%PASS%><br>
+            <input type ="submit" value ="Submit">
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

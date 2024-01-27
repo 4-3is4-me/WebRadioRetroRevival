@@ -216,12 +216,12 @@ String processor(const String &var) {
   return String();
 }
 
-// Access Point for adding WIFI and stations
-void startRMAP()  {
+// Access Point for adding WiFi credentials
+void startWifiManager()  {
   // Start access point to configure SSID & pass
     Serial.println("Setting AP (Access Point)");
     // NULL sets an open Access Point
-    WiFi.softAP("RADIO-MANAGER", "cascadeT26");
+    WiFi.softAP("RADIO-MANAGER", "cascadeT26");  //this is the access point SSID and password
 
     //Always gives 192.168.4.1 - not worth using mDNS due to compatibility issues
     IPAddress IP = WiFi.softAPIP();
@@ -235,7 +235,7 @@ void startRMAP()  {
     
     // AP Root URL
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-      request->send(LittleFS, "/radiomanager.html", "text/html", false, processor);
+      request->send(LittleFS, "/wifimanager.html", "text/html", false, processor);
     });
     
     server.serveStatic("/", LittleFS, "/");
@@ -246,8 +246,6 @@ void startRMAP()  {
         AsyncWebParameter* p = request->getParam(i);
         if(p->isPost()){
           // HTTP POST ssid value
-          String statname;
-          String statURL;
           if (p->name() == PARAM_INPUT_1) {
             ssid = p->value().c_str();
             Serial.print("SSID set to: ");
@@ -263,6 +261,40 @@ void startRMAP()  {
             // Write file to save value
             writeFile(LittleFS, passPath, pass.c_str());
           }
+          //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
+        }
+      }
+      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>
+                          Reconnect to the Access Point and return here if there are any problems.</h1></body>");
+      delay(3000);
+      ESP.restart();
+    });
+    server.begin(); /// help
+}
+
+void startStationManager()  {
+  // Start access point to configure SSID & pass
+    Serial.println("Starting station manager...");
+    //for (int i=0;i<10;i++)  {
+    //  Serial.printf("Station name is: %s\n", stationName[i]);
+      //Serial.printf("Station url is: %s\n", stationList[i]);
+      //Serial.printf("Address of name is: %p\n", stationName[i]);      
+    //}
+    
+    // web server Root URL
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+      request->send(LittleFS, "/index.html", "text/html", false, processor);
+    });
+    
+    server.serveStatic("/", LittleFS, "/");
+    
+    server.on("/", HTTP_POST, [](AsyncWebServerRequest *request) {
+      int params = request->params();
+      for(int i=0;i<params;i++){
+        AsyncWebParameter* p = request->getParam(i);
+        if(p->isPost()){
+          String statname;
+          String statURL;
           // HTTP POST station 1 name value
           if (p->name() == PARAM_INPUT_3) {
             statname = p->value().c_str();
@@ -446,7 +478,7 @@ void startRMAP()  {
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
-      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>Reconnect to the Access Point and return here if there are any problems.</h1></body>");
+      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.</h1></body>");
       delay(3000);
       ESP.restart();
     });
@@ -568,18 +600,14 @@ void setup() {
     blueToothPlay();
   }
 
-  // Switch to radio manager access point if volume is zero at start up
- // otherwise, try to connect to wifi, start web radio if connects otherwise start radio manager access point
-
-  if ((map(analogRead(volumePin), 0, 4095, 0, 21)) == 0) {
-    Serial.println("AP started as volume is zero");
-    startRMAP();
-    
-  } else if (initWiFi()) {
+// Running station manager in station mode while radio is working
+  if (initWiFi()) {
+    startStationManager();
+    serial.println("Starting web radio");
     webRadioPlay();
   } else  {
     Serial.println("AP started as WIFI details not configured");
-    startRMAP();
+    startWifiManager();
   }
 }
 

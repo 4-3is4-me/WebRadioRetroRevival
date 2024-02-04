@@ -68,6 +68,7 @@ const char *PARAM_INPUT_19 = "station9name";
 const char *PARAM_INPUT_20 = "station9url";
 const char *PARAM_INPUT_21 = "station10name";
 const char *PARAM_INPUT_22 = "station10url";
+const char *PARAM_INPUT_23 = "deleteWifiCredentials";
 
 //Variables to save values from HTML form
 String ssid;
@@ -264,8 +265,7 @@ void startWifiManager()  {
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
-      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>
-                          Reconnect to the Access Point and return here if there are any problems.</h1></body>");
+      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>Reconnect to the Access Point and return here if there are any problems.</h1></body>");
       delay(3000);
       ESP.restart();
     });
@@ -295,6 +295,7 @@ void startStationManager()  {
         if(p->isPost()){
           String statname;
           String statURL;
+          bool deleteWifi;
           // HTTP POST station 1 name value
           if (p->name() == PARAM_INPUT_3) {
             statname = p->value().c_str();
@@ -474,7 +475,17 @@ void startStationManager()  {
             Serial.println(statURL);
             // Write file to save value
             writeFile(LittleFS, stationURLPath[9], statURL.c_str());
-          }          
+          }  
+          // HTTP POST delete saved wifi credentials
+          if (p->name() == PARAM_INPUT_23)  {
+            deleteWifi = p->value();
+            Serial.println(deleteWifi);
+            if (deleteWifi == true) {
+              Serial.println("Deleting saved Wifi credentials");
+              writeFile(LittleFS, ssidPath, "");
+              writeFile(LittleFS, passPath, "");
+            }
+          }       
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
@@ -497,6 +508,8 @@ bool initWiFi() {
     return false;
   }
 
+  String hostname = "radiomanager";
+  Wifi.setHostname(hostname.c_str());
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid.c_str(), pass.c_str());
   Serial.println("Connecting to WiFi...");

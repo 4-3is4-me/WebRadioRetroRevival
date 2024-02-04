@@ -13,6 +13,7 @@
       <h1>Radio Manager</h1>
       <button class="button2" onclick="openTab(event, 'stations')">Stations</button>
       <button class="button2" onclick="openTab(event, 'search')">Search</button>
+      <button class="button2" onclick="openTab(event, 'deleteWifi')">WiFi</button>
     </div>
     <div id="stations" class="tab">
       <div class="content">
@@ -23,7 +24,7 @@
             </div>
             <form action="/" method="POST"
           onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
-          onSubmit="return confirm('Please confirm, are you ready to submit?');">
+          onSubmit="return confirm('Save these stations?');">
               <p>
                 <label for="station1name">Station 1&nbsp;</label>
                 <input type="text" id="station1name" name="station1name" value=%STAT1NAME%><br>
@@ -65,17 +66,15 @@
                 <input type="text" id="station10name" name="station10name" value=%STAT10NAME%><br>
                 <label for="station10url">&nbsp;&nbsp;&nbsp;&nbsp;https://</label>
                 <input type="url" id="station10url" name="station10url" value=%STAT10URL%><br>
-                <label for="deleteWifiCredentials">Delete Wifi Credentials</label>
-                <input type="checkbox" id="deleteWifiCredentials" name="deleteWifiCredentials"><br>
                 <br>
-                <input type ="submit" value ="Submit">
+                <input type ="submit" value ="SUBMIT">
               </p>
             </form>
           </div>
         </div>
       </div>
     </div>
-      <div  id="search" class ="tab">
+    <div  id="search" class ="tab">
       <div class="content">
         <div class="card-grid">
           <div class="card">
@@ -88,6 +87,27 @@
             <p>
               <button onclick="getData()" id = "button" class="button-on">SEARCH</button></a>
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="deleteWifi" class="tab">
+      <div class="content">
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-title">
+              <h1>WiFi</h1>
+            </div>
+            <form action="/" method="POST"
+          onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
+          onSubmit="return confirm('Please confirm, do you wish to delete the WiFi SSID and password?');">
+              <p>
+                <label for="deleteWifiCredentials">Delete WiFi Credentials</label>
+                <input type="checkbox" id="deleteWifiCredentials" name="deleteWifiCredentials"><br>
+                <br>
+                <input type ="submit" value ="SUBMIT">
+              </p>
+            </form>
           </div>
         </div>
       </div>

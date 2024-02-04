@@ -3,15 +3,31 @@ function getData() {
   const name = document.getElementById("name").value;
   const countrycode = document.getElementById("countrycode").value;
 
-  // To do - pick server as per API guidance  
-  const url = `https://de1.api.radio-browser.info/json/stations/search?name=${name}&countrycode=${countrycode}&limit=10`;
+  // To do - pick a server as per API guidance  https://api.radio-browser.info/examples/serverlist-browser.js
+  function get_radiobrowser_api_url()  {
+    try {
+      fetch(`http://all.api.radio-browser.info/json/servers`)
+        .then(response => response.json())
+        .then(hosts =>  {
+          console.log(hosts);
+          let ourhost = hosts[Math.floor(Math.random() * hosts.length)];
+          console.log(ourhost.name);
+          return ourhost.name;
+        });
+    } catch (error)  {
+        console.log(error);
+        document.getElementById("result").innerHTML = `Error: ${error}`;
+    }
+  }
 
+  //const url = `https://de1.api.radio-browser.info/json/stations/search?name=${name}&countrycode=${countrycode}&limit=10`;
+  
   try {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        document.getElementById("result").innerHTML = '';
         //console.log(data);
+        document.getElementById("result").innerHTML = ''; // clears the previous results
         if (data.length === 0) {
           document.getElementById("result").innerHTML = "No results found";
         } else {
@@ -23,9 +39,9 @@ function getData() {
         }
       });
   } catch (error) {
-    console.log(error);
-    document.getElementById("result").innerHTML = `Error: ${error}`;
-  }
+      console.log(error);
+      document.getElementById("result").innerHTML = `Error: ${error}`;
+    }
 }
 
 function openTab(evt, tabName) {

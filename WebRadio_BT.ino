@@ -509,7 +509,7 @@ bool initWiFi() {
   }
 
   String hostname = "radiomanager";
-  Wifi.setHostname(hostname.c_str());
+  WiFi.setHostname(hostname.c_str());
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid.c_str(), pass.c_str());
   Serial.println("Connecting to WiFi...");

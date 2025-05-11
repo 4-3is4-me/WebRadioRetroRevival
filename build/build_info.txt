@@ -1,0 +1,63 @@
+Multiple libraries were found for "SD.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SD
+ Not used: /home/pi/Downloads/arduino-1.8.10/libraries/SD
+Multiple libraries were found for "ESPAsyncWebServer.h"
+ Used: /home/pi/Arduino/libraries/ESPAsyncWebServer-master
+Multiple libraries were found for "BluetoothA2DPSink.h"
+ Used: /home/pi/Arduino/libraries/ESP32-A2DP-1.7.1
+Multiple libraries were found for "LittleFS.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/LittleFS
+Multiple libraries were found for "SPIFFS.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SPIFFS
+Multiple libraries were found for "FFat.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/FFat
+Multiple libraries were found for "WiFi.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/WiFi
+ Not used: /home/pi/Downloads/arduino-1.8.10/libraries/WiFi
+Multiple libraries were found for "ESPmDNS.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/ESPmDNS
+Multiple libraries were found for "WiFiClientSecure.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/WiFiClientSecure
+Multiple libraries were found for "SD_MMC.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SD_MMC
+Multiple libraries were found for "AsyncTCP.h"
+ Used: /home/pi/Arduino/libraries/AsyncTCP-master
+Multiple libraries were found for "FS.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/FS
+Multiple libraries were found for "Audio.h"
+ Used: /home/pi/Arduino/libraries/ESP32-audioI2S-3.0.0
+Multiple libraries were found for "SPI.h"
+ Used: /home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SPI
+Using library WiFi at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/WiFi 
+Using library ESPmDNS at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/ESPmDNS 
+Using library FS at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/FS 
+Using library LittleFS at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/LittleFS 
+Using library ESP32-audioI2S-3.0.0 at version 2.0.0 in folder: 
+/home/pi/Arduino/libraries/ESP32-audioI2S-3.0.0 
+Using library SPI at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SPI 
+Using library WiFiClientSecure at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/WiFiClientSecure 
+Using library SD at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SD 
+Using library SD_MMC at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SD_MMC 
+Using library SPIFFS at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/SPIFFS 
+Using library FFat at version 2.0.0 in folder: 
+/home/pi/.arduino15/packages/esp32/hardware/esp32/2.0.11/libraries/FFat 
+Using library ESPAsyncWebServer-master at version 1.2.3 in folder: 
+/home/pi/Arduino/libraries/ESPAsyncWebServer-master 
+Using library AsyncTCP-master at version 1.1.1 in folder: 
+/home/pi/Arduino/libraries/AsyncTCP-master 
+Using library ESP32-A2DP-1.7.1 at version 1.6.0 in folder: 
+/home/pi/Arduino/libraries/ESP32-A2DP-1.7.1 
+/home/pi/.arduino15/packages/esp32/tools/xtensa-esp32-elf-gcc/esp-2021r2-patch5-8.4.0/bin/xtensa-esp32-elf-size 
+-A /tmp/arduino_build_58401/WebRadio_BTstrtest.ino.elf
+Sketch uses 1918169 bytes (60%) of program storage space. Maximum is 3145728 bytes.
+Global variables use 72348 bytes (22%) of dynamic memory, leaving 255332 bytes for local 
+variables. Maximum is 327680 bytes.

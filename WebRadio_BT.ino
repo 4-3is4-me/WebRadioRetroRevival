@@ -15,6 +15,7 @@
 // Include required libraries
 #include <Arduino.h>
 #include <WiFi.h>
+#include <ESPmDNS.h>
 #include <FS.h>
 #include <LittleFS.h>
 #include "Audio.h"
@@ -74,7 +75,7 @@ const char *PARAM_INPUT_23 = "deleteWifiCredentials";
 String ssid;
 String pass;
 
-// These are written over on the first read of the files which fails, the read function returns an empty string
+// These are written over on the first read of the files.
 String stationName[10] = {"Station1","Station2","Station3","Station4","Station5","Station6","Station7","Station8","Station9","Station10"};
 String stationList[10] = {"URL","URL","URL","URL","URL","URL","URL","URL","URL","URL"};
 
@@ -220,7 +221,7 @@ String processor(const String &var) {
 // Access Point for adding WiFi credentials
 void startWifiManager()  {
   // Start access point to configure SSID & pass
-    Serial.println("Setting AP (Access Point)");
+    Serial.println("Starting WiFi Access Point... ssid = RADIO-MANAGER");
     // NULL sets an open Access Point
     WiFi.softAP("RADIO-MANAGER", "cascadeT26");  //this is the access point SSID and password
 
@@ -265,7 +266,7 @@ void startWifiManager()  {
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
-      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>Reconnect to the Access Point and return here if there are any problems.</h1></body>");
+      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Wifi details uploaded successfully. The radio will restart.<br><br>Reconnect to the WEB-RADIO Access Point and return here if there are any problems.<br>Otherwise, manage stations at<br><br>http://webradio.local<br><br>on a computer to add stations, or identify the IP and connect on a mobile browser.</h1></body>");
       delay(3000);
       ESP.restart();
     });
@@ -273,7 +274,7 @@ void startWifiManager()  {
 }
 
 void startStationManager()  {
-  // Start access point to configure SSID & pass
+  // Start web server to manage stations
     Serial.println("Starting station manager...");
     //for (int i=0;i<10;i++)  {
     //  Serial.printf("Station name is: %s\n", stationName[i]);
@@ -321,7 +322,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[1], statname.c_str());  
-            }
+          }
           // HTTP POST station 2 url value
           if (p->name() == PARAM_INPUT_6) {
             statURL = p->value().c_str();
@@ -339,7 +340,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[2], statname.c_str());  
-            }
+          }
           // HTTP POST station 3 url value
           if (p->name() == PARAM_INPUT_8) {
             statURL = p->value().c_str();
@@ -357,7 +358,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[3], statname.c_str());  
-            }
+          }
           // HTTP POST station 4 url value
           if (p->name() == PARAM_INPUT_10) {
             statURL = p->value().c_str();
@@ -375,7 +376,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[4], statname.c_str());  
-            }
+          }
           // HTTP POST station 5 url value
           if (p->name() == PARAM_INPUT_12) {
             statURL = p->value().c_str();
@@ -393,7 +394,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[5], statname.c_str());  
-            }
+          }
           // HTTP POST station 6 url value
           if (p->name() == PARAM_INPUT_14) {
             statURL = p->value().c_str();
@@ -411,7 +412,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[6], statname.c_str());  
-            }
+          }
           // HTTP POST station 7 url value
           if (p->name() == PARAM_INPUT_16) {
             statURL = p->value().c_str();
@@ -429,7 +430,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[7], statname.c_str());  
-            }
+          }
           // HTTP POST station 8 url value
           if (p->name() == PARAM_INPUT_18) {
             statURL = p->value().c_str();
@@ -447,7 +448,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[8], statname.c_str());  
-            }
+          }
           // HTTP POST station 9 url value
           if (p->name() == PARAM_INPUT_20) {
             statURL = p->value().c_str();
@@ -465,7 +466,7 @@ void startStationManager()  {
             Serial.println(statname);
             // Write file with statname
             writeFile(LittleFS, stationNamePath[9], statname.c_str());  
-            }
+          }
           // HTTP POST station 10 url value
           if (p->name() == PARAM_INPUT_22) {
             statURL = p->value().c_str();
@@ -485,11 +486,11 @@ void startStationManager()  {
               writeFile(LittleFS, ssidPath, "");
               writeFile(LittleFS, passPath, "");
             }
-          }       
+          }
           //Serial.printf("POST[%s]: %s\n", p->name().c_str(), p->value().c_str());
         }
       }
-      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.</h1></body>");
+      request->send(200, "text/html", "<!DOCTYPE html><head></head><body><h1>Submitted, the radio will restart.<br>Now close this tab.<br><br>Visit http://webradio.local again to manage stations</h1></body>");
       delay(3000);
       ESP.restart();
     });
@@ -526,6 +527,15 @@ bool initWiFi() {
   }
 
   Serial.println(WiFi.localIP());
+  
+  // mDNS -- testing
+  if (!MDNS.begin("webradio"))  {
+    Serial.println("Error: mDNS failed");
+    while(1)  {
+      delay(1000);
+    }
+  }
+  Serial.println("mDNS valid for http://webradio.local");
   return true;
 }
 
@@ -562,7 +572,7 @@ void webRadioLoop() {
       }
       rdpreviousMillis = currentMillis;
     }
-  
+
     // Run audio player
     audio.loop();
   }
@@ -616,10 +626,10 @@ void setup() {
 // Running station manager in station mode while radio is working
   if (initWiFi()) {
     startStationManager();
-    serial.println("Starting web radio");
+    Serial.println("Starting web radio");
     webRadioPlay();
   } else  {
-    Serial.println("AP started as WIFI details not configured");
+    Serial.println("AP started at 192.168.4.1 as WIFI details not configured");
     startWifiManager();
   }
 }

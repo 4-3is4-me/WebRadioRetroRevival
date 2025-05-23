@@ -15,11 +15,11 @@ function getData() {
           .then(data => {
             document.getElementById("result").innerHTML = ''; // clears the previous results
             if (data.length === 0) {
-              document.getElementById("result").innerHTML = "No results found";
+              document.getElementById("result").innerHTML = 'No results found';
             } else {
               data.forEach(station => {
                 const stationName = document.createElement("p");
-                stationName.innerHTML = `<strong>${station.name}:</strong><br> ${station.url}<br>`;
+                stationName.innerHTML = `<strong>Name:</strong> ${station.name}<br><strong>URL:</strong> ${station.url}<br>`;
                 document.getElementById("result").appendChild(stationName);
               });
             }

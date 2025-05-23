@@ -13,6 +13,14 @@ p {
   font-size: 1.4rem;
 }
 
+p.a {
+  font-size: 1.4rem;
+  text-align: left;
+  margin: 0% 5% 0% 5%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 .topnav { 
   overflow: hidden; 
   background-color: #0A1128;
@@ -50,6 +58,10 @@ body {
   color: #034078
 }
 
+form {
+  position: relative;
+}
+
 
 input[type=submit] {
   border: none;
@@ -73,16 +85,21 @@ input[type=submit]:hover {
 input[type=text], input[type=number], input[type=url], input[type=password], select {
   width: 60%;
   padding: 12px 10px;
-  margin: 10px;
+  margin: 10px 10px 10px 10px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 1.0rem;
+  position: absolute;
+  left: 25%;
 }
 
 label {
+  padding: 50% 50%;
   font-size: 1.2rem;
+  position: absolute;
+  left: 10%;
 }
 .value{
   font-size: 1.2rem;
@@ -116,7 +133,7 @@ button {
 }
 
 .button2 {
-  border: none;
+  border: 2px solid lightgrey;
   color: #FEFCFB;
   background-color: #0A1128;
   padding: 15px 15px;

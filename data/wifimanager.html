@@ -13,16 +13,23 @@
   <div class="content">
     <div class="card-grid">
       <div class="card">
+        <div class="card-title">
+            <h1>WiFi Credentials</h1>
+          </div>
         <form action="/" method="POST"
 			onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
 			onSubmit="return confirm('Please confirm, are you ready to submit?');">
-          <p>
-            <label for="ssid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SSID</label>
-            <input type="text" id="ssid" name="ssid" value=%SSID%><br>
+          <div class="form-group">
+            <label for="ssid">SSID</label>
+            <input type="text" id="ssid" name="ssid" value=%SSID%>
+          </div>
+          <div class="form-group">
             <label for="pass">Password</label>
-            <input type="password" id="pass" name="pass" value=%PASS%><br>
-            <input type ="submit" value ="Submit">
-          </p>
+            <input type="password" id="pass" name="pass" value=%PASS%>
+          </div>
+          <div>
+            <input type ="submit" value ="SUBMIT">
+          </div>
         </form>
       </div>
     </div>

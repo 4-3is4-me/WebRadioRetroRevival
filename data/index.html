@@ -3,10 +3,10 @@
   <head>
     <title>Radio Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script src="static/app.js"></script>
+    <script src="app.js"></script>
   </head>
   <body>
     <div class="topnav">
@@ -25,50 +25,89 @@
             <form class="form" action="/" method="POST"
           onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
           onSubmit="return confirm('Save these stations?');">
-              <p>
-                <label class="label" for="station1name">Station 1</label>
-                <input class="input" type="text" id="station1name" name="station1name" value=%STAT1NAME%><br>
-                <label class="label" for="station1url">URL:</label>
-                <input class="input" type="url" id="station1url" name="station1url" value=%STAT1URL%><br>
-                <label class="label" for="station1name">Station 2</label>
-                <input class="input" type="text" id="station2name" name="station2name" value=%STAT2NAME%><br>
-                <label class="label" for="station2url">URL:</label>
-                <input class="input" type="url" id="station2url" name="station2url" value=%STAT2URL%><br>
-                <label class="label" for="station2name">Station 3</label>
-                <input class="input" type="text" id="station3name" name="station3name" value=%STAT3NAME%><br>
-                <label class="label" for="station3url">URL:</label>
-                <input class="input" type="url" id="station3url" name="station3url" value=%STAT3URL%><br>
-                <label class="label" for="station3name">Station 4</label>
-                <input class="input" type="text" id="station4name" name="station4name" value=%STAT4NAME%><br>
-                <label class="label" for="station4url">URL:</label>
-                <input class="input" type="url" id="station4url" name="station4url" value=%STAT4URL%><br>
-                <label class="label" for="station5name">Station 5</label>
-                <input class="input" type="text" id="station5name" name="station5name" value=%STAT5NAME%><br>
-                <label class="label" for="station5url">URL:</label>
-                <input class="input" type="url" id="station5url" name="station5url" value=%STAT5URL%><br>
-                <label class="label" for="station6name">Station 6</label>
-                <input class="input" type="text" id="station6name" name="station6name" value=%STAT6NAME%><br>
-                <label class="label" for="station6url">URL:</label>
-                <input class="input" type="url" id="station6url" name="station6url" value=%STAT6URL%><br>
-                <label class="label" for="station7name">Station 7</label>
-                <input class="input" type="text" id="station7name" name="station7name" value=%STAT7NAME%><br>
-                <label class="label" for="station7url">URL:</label>
-                <input class="input" type="url" id="station7url" name="station7url" value=%STAT7URL%><br>
-                <label class="label" for="station8name">Station 8</label>
-                <input class="input" type="text" id="station8name" name="station8name" value=%STAT8NAME%><br>
-                <label class="label" for="station8url">URL:</label>
-                <input class="input" type="url" id="station8url" name="station8url" value=%STAT8URL%><br>
-                <label class="label" for="station9name">Station 9</label>
-                <input class="input" type="text" id="station9name" name="station9name" value=%STAT9NAME%><br>
-                <label class="label" for="station9url">URL:</label>
-                <input class="input" type="url" id="station9url" name="station9url" value=%STAT9URL%><br>
-                <label class="label" for="station10name">Station 10</label>
-                <input class="input" type="text" id="station10name" name="station10name" value=%STAT10NAME%><br>
-                <label class="label" for="station10url">URL:</label>
-                <input class="input" type="url" id="station10url" name="station10url" value=%STAT10URL%><br>
-                <br>
+              <div class="form-group">
+                <label for="station1name">Station 1</label>
+                <input type="text" id="station1name" name="station1name" value=%STAT1NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station1url">URL:</label>
+                <input type="url" id="station1url" name="station1url" value=%STAT1URL%>
+              </div>
+              <div class="form-group">  
+                <label for="station1name">Station 2</label>
+                <input type="text" id="station2name" name="station2name" value=%STAT2NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station2url">URL:</label>
+                <input type="url" id="station2url" name="station2url" value=%STAT2URL%>
+              </div>
+              <div class="form-group">
+                <label for="station2name">Station 3</label>
+                <input type="text" id="station3name" name="station3name" value=%STAT3NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station3url">URL:</label>
+                <input type="url" id="station3url" name="station3url" value=%STAT3URL%>
+              </div>
+              <div class="form-group">
+                <label for="station3name">Station 4</label>
+                <input type="text" id="station4name" name="station4name" value=%STAT4NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station4url">URL:</label>
+                <input type="url" id="station4url" name="station4url" value=%STAT4URL%>
+              </div>
+              <div class="form-group">
+                <label for="station5name">Station 5</label>
+                <input type="text" id="station5name" name="station5name" value=%STAT5NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station5url">URL:</label>
+                <input type="url" id="station5url" name="station5url" value=%STAT5URL%>
+              </div>
+              <div class="form-group">
+                <label for="station6name">Station 6</label>
+                <input type="text" id="station6name" name="station6name" value=%STAT6NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station6url">URL:</label>
+                <input type="url" id="station6url" name="station6url" value=%STAT6URL%>
+              </div>
+              <div class="form-group">
+                <label for="station7name">Station 7</label>
+                <input type="text" id="station7name" name="station7name" value=%STAT7NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station7url">URL:</label>
+                <input type="url" id="station7url" name="station7url" value=%STAT7URL%>
+              </div>
+              <div class="form-group">
+                <label for="station8name">Station 8</label>
+                <input type="text" id="station8name" name="station8name" value=%STAT8NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station8url">URL:</label>
+                <input type="url" id="station8url" name="station8url" value=%STAT8URL%>
+              </div>
+              <div class="form-group">
+                <label for="station9name">Station 9</label>
+                <input type="text" id="station9name" name="station9name" value=%STAT9NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station9url">URL:</label>
+                <input type="url" id="station9url" name="station9url" value=%STAT9URL%>
+              </div>
+              <div class="form-group">
+                <label for="station10name">Station 10</label>
+                <input type="text" id="station10name" name="station10name" value=%STAT10NAME%>
+              </div>
+              <div class="form-group">
+                <label for="station10url">URL:</label>
+                <input type="url" id="station10url" name="station10url" value=%STAT10URL%>
+              </div>
+              <div>
                 <input type ="submit" value ="SUBMIT">
-              </p>
+              </div>
             </form>
           </div>
         </div>
@@ -81,12 +120,22 @@
             <div class="card-title">
               <h1>Search</h1>
             </div>
-            <input type = "text" id = "name" name = "name" value=" Station Name"><br>
-            <input type = "text" id = "countrycode" name = "countrycode" value = " Country Code"><br>
-            <p id="result" class="a"></p>
-            <p>
-              <button onclick="getData()" id = "button" class="button-on">SEARCH</button></a>
-            </p>
+            <form class="form" onsubmit="return false;">
+              <div class="form-group">
+                <label for="name">Station Name</label>
+                <input type="text" id="name" name="name">
+              </div>
+              <div class="form-group">
+                <label for="countrycode">Country (GB/DE/SE...)</label>
+                <input type="text" id="countrycode" name="countrycode">
+              </div>
+              <div>
+                <p id="result" class="a"></p>
+              </div>
+              <div>
+                <button type="button" onclick="getData()" id="button" class="button-on">SEARCH</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -99,14 +148,13 @@
               <h1>WiFi</h1>
             </div>
             <form action="/" method="POST"
-          onfocusout="event.target.value=event.target.value.replace(/\s/g,'')"
-          onSubmit="return confirm('Please confirm, do you wish to delete the WiFi SSID and password?');">
-              <p>
+                onSubmit="return confirm('Please confirm, do you wish to delete the WiFi SSID and password?');">
+                <h2>Press DELETE to remove the stored WiFi credentials.</h2>
+                <!-- <div class="form-group">
                 <label for="deleteWifiCredentials">Delete WiFi Credentials</label>
-                <input type="checkbox" id="deleteWifiCredentials" name="deleteWifiCredentials"><br>
-                <br>
-                <input type ="submit" value ="SUBMIT">
-              </p>
+                <input type="checkbox" id="deleteWifiCredentials" name="deleteWifiCredentials">
+              </div> -->
+               <input type="submit" value="DELETE">
             </form>
           </div>
         </div>
